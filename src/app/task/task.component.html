@@ -1,0 +1,32 @@
+<h2>Task List</h2>
+
+<input type="text" [(ngModel)]="assigneeName" placeholder="Enter Assignee Name">
+<button (click)="assignTask()">Assign Task</button>
+<br/>
+<br/>
+<br/>
+
+<table>
+  <thead>
+    <tr>
+      <th>SN</th>
+      <th> Task Name</th>
+      <th>Assign Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.id }}</td>
+      <td>{{ task.assignee }}</td>
+      <td>{{ task.assignDate }}</td>
+      <td>{{ task.status }}</td>
+      <td>
+        <button *ngIf="task.status !== 'Pending' && task.status !== 'Done'" (click)="startTask(task.id)">Start</button>
+        <button *ngIf="task.status !== 'Done'" (click)="completeTask(task.id)">Complete</button>
+        <button (click)="deleteTask(task.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
